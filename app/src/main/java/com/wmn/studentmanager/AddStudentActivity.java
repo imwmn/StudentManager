@@ -70,7 +70,7 @@ public class AddStudentActivity  extends Activity{
         });
 
         student =new Student(name,Integer.parseInt(stuAge),tel,stuID,sex);
-        
+
 
 
 
