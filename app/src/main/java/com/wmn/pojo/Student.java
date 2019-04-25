@@ -1,9 +1,11 @@
 package com.wmn.pojo;
 
+import java.io.Serializable;
+
 /**
  * Created by 89243 on 2019/4/23.
  */
-public class Student {
+public class Student  implements Serializable{
     private  String name; //姓名
     private  int age; //年龄
     private  String tel; //电话

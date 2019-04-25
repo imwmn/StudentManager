@@ -38,6 +38,11 @@ public class DBManger { //数据库操作类
         String[] args={name};
         db.delete(DBHelp.DB_TABLE,"name=?",args);
     }
+    public void delete(String stuID)
+    {
+        String[] args={stuID};
+        db.delete(DBHelp.DB_TABLE,"stuID=?",args);
+    }
 
     public void clearData()
     {
@@ -77,7 +82,8 @@ public class DBManger { //数据库操作类
 
     public void updateData(String raw,String rawvalue,String wherename)
     {
-        String sql="update student_info set "+raw+"='"+rawvalue+"' where name='"+wherename+"'";
+        String sql="update student_info set "+raw+"='"+rawvalue+"' where stuID='"+wherename+"'";
+
          db.execSQL(sql);
     }
 }

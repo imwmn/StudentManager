@@ -1,14 +1,17 @@
 package com.wmn.studentmanager;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
-import com.wmn.pojo.Student;
+
+import com.wmn.utils.DBManger;
 
 /**
  * Created by 89243 on 2019/4/23.
@@ -19,8 +22,8 @@ public class AddStudentActivity  extends Activity{
     private RadioGroup radioGroup;
     private String name,sex,stuID,tel,stuAge;
     private Button btn_add,btn_cancel;
-    private Student student;
 
+    private DBManger dbManger;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +33,28 @@ public class AddStudentActivity  extends Activity{
         btn_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getInfo();
+                 if(getInfo()){
+                     Toast.makeText(AddStudentActivity.this,"成功添加学生",Toast.LENGTH_LONG).show();
+                     new Thread(){
+                         @Override
+                         public void run() {
+                             try {
+                                 sleep(2000);
+                                 Intent intent = new Intent(AddStudentActivity.this, MainActivity.class);
+                                 startActivity(intent);
+                             } catch (InterruptedException e) {
+                                 e.printStackTrace();
+                             }
+                         }
+                     }.start();
+                 }else{
+                     Toast.makeText(AddStudentActivity.this,"添加学生失败，请重新添加",Toast.LENGTH_LONG).show();
+
+                 }
+
+
+
+
             }
         });
 
@@ -48,28 +72,45 @@ public class AddStudentActivity  extends Activity{
         btn_cancel= findViewById(R.id.add_cancel);
     }
 
-    public  void getInfo(){
-         name = String.valueOf(et_name.getText());
-        tel = String.valueOf(et_tel.getText());
-        stuID = String.valueOf(et_stuID.getText());
-        stuAge = String.valueOf(stu_age.getText());
-        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                int id= radioGroup.getCheckedRadioButtonId();
-                switch (id){
-                    case R.id.stu_rb1:
-                        sex = String.valueOf(radioButton_M.getText());
-                        break;
-                    case R.id.stu_rb2:
-                        sex = String.valueOf(radioButton_F.getText());
-                        break;
+    public  boolean  getInfo(){
+         boolean flag = true;
+         name = et_name.getText().toString();
+        tel = et_tel.getText().toString();
+        stuID = et_stuID.getText().toString();
+        stuAge = stu_age.getText().toString();
+        if(radioButton_F.isChecked()){
+            sex = radioButton_F.getText().toString();
+        }else {
+            sex = radioButton_M.getText().toString();
+        }
 
-                }
-            }
-        });
+//       if(name == null){
+//           Toast.makeText(this,"姓名不能为空，请输入！",Toast.LENGTH_LONG).show();
+//           flag =false;
+//
+//       }else if(tel == null){
+//           Toast.makeText(this,"电话不能为空，请输入！",Toast.LENGTH_LONG).show();
+//           flag =false;
+//       }else if(stuID == null){
+//           Toast.makeText(this,"学号不能为空，请输入！",Toast.LENGTH_LONG).show();
+//           flag =false;
+//       }else if(stuAge == null){
+//           Toast.makeText(this,"年龄不能为空，请输入！",Toast.LENGTH_LONG).show();
+//           flag =false;
+//       }else if(sex == null){
+//           Toast.makeText(this,"性别不能为空，请输入！",Toast.LENGTH_LONG).show();
+//           flag =false;
+//       }
 
-        student =new Student(name,Integer.parseInt(stuAge),tel,stuID,sex);
+       if(flag == true){
+           dbManger= new DBManger(this);
+           dbManger.add(name,Integer.parseInt(stuAge),tel,stuID,sex);
+           return  true;
+
+       }else{
+
+           return false ;
+       }
 
 
 

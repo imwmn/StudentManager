@@ -17,8 +17,8 @@ public class DBHelp extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         //创建表
         db.execSQL("create table if not exists student_info "+
-       "(id INTEGER AUTOINCREMENT,name VARCHAR," +
-                "age INTEGER,tel VARCHAR,sex VARCHAR,stuID VARCHAR  PRIMARY KEY)");
+       "(id INTEGER PRIMARY KEY AUTOINCREMENT ,name VARCHAR," +
+                "age INTEGER,tel VARCHAR,sex VARCHAR,stuID VARCHAR )");
 
         //创建用户表表名usertable
 //        db.execSQL("CREATE TABLE IF NOT EXISTS usertable " +
