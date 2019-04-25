@@ -5,48 +5,72 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="#0371ca"
+    >
+    
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:background="@drawable/bg"/>
 
     <LinearLayout
+        android:layout_marginTop="5dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:gravity="center">
         <Button
             android:id="@+id/all"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/background_button_div"
+            android:layout_marginRight="70dp"
             android:text="查看所有"/>
         <Button
             android:id="@+id/search"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/background_button_div"
+
             android:text="以姓名查"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:gravity="center">
         <Button
             android:id="@+id/add"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/background_button_div"
+            android:layout_marginRight="70dp"
             android:text="增加记录"/>
         <Button
             android:id="@+id/delete"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/background_button_div"
+
             android:text="删除记录"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:gravity="center">
         <Button
             android:id="@+id/clear"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/background_button_div"
+            android:layout_marginRight="70dp"
             android:text="清空记录"/>
         <Button
             android:id="@+id/update"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/background_button_div"
             android:text="更新记录"/>
     </LinearLayout>
 
